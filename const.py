@@ -31,6 +31,6 @@ numbers = {
     "hundred":100,
     "thousand":1000,
     "million":10**6,
-    "billion":10**9,
-    "trillion":10**12,
+    "milliard":10**9,
+    "billion":10**12,
 }
