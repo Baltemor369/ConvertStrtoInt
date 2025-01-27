@@ -5,7 +5,7 @@ def clear_text(text:str):
     """
     Remove punctuation marks and convert all letters to lowercase.
     """
-    text = text.replace("-","")
+    text = text.replace("-"," ")
     
     return text.lower()
 
