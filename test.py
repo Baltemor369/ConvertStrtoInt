@@ -1,44 +1,38 @@
 import re
-from const import *
+from const import numbers
 
-def parse_unit(string):
-    mots = re.split(r'(thousand|million)', string)
+def convert_int(list):
+    for i in range(0,len(list)):
+        if list[i] not in numbers:
+            continue
+        list[i] = numbers[list[i]]
 
-    # Recomposer la chaîne en ajoutant les mots divisés
-    resultat = []
-    temp_str = ""
-    for mot in mots:
-        if mot in {"hundred", "thousand", "million"}:
-            temp_str += " " + mot
-            resultat.append(temp_str.strip())
-            temp_str = ""
-        else:
-            temp_str += " " + mot.strip()
-    
-    return resultat
+def parse_number(words):
+    if len(words) > 1:
+        if words[0] != None:
 
-def convert_a_unit(string):
-    ls = string.split(" ")
-    unit = numbers[ls.pop()]
-    result = 0
-
-    for elt in ls:
-        nb = numbers[elt]
-        
-
-def converter(string):
-    result = parse_unit(chaine.lower())
-    for elt in result:
-        e = convert_a_unit(elt)
-    
-    return result
+            # combine tens
+            if 20 <= words[0] <= 90:
+                if 0 < words[1] < 10:
+                    words[1] += words[0]
+                    del words[0]
+            
+            # combine hundreds
+            elif words[1] == 100:
+                if 0 < words[0] < 10:
+                    words[1] *= words[0]
+                    del words[0]
+            
+            else:
+                words = [words[0]] + parse_number(words[1:])
+        words = parse_number(words)
+                    
+    return words
 
 
-# Votre chaîne
-chaine = "five hundred thousand thirty million four hundred fifty six thousand seven hundred twenty nine"
-
-result = converter(chaine)
-
-# Résultat final
-print(result)
-
+# Exemple d'utilisation
+text = "five hundred forty eight thousand thirty million four hundred fifty six thousand seven hundred twenty nine"
+words = re.split(r'\s+', text)
+convert_int(words)
+words = parse_number(words)
+print(words)

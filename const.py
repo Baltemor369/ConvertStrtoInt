@@ -1,5 +1,6 @@
 
 numbers = {
+    "zero": 0,
     "one":1,
     "two":2,
     "three":3,
@@ -28,9 +29,8 @@ numbers = {
     "eighty":80,
     "ninety":90,
     "hundred":100,
-}
-
-units = {
     "thousand":1000,
-    "million":1000000,
+    "million":10**6,
+    "billion":10**9,
+    "trillion":10**12,
 }
