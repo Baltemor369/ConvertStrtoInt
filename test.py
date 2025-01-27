@@ -25,7 +25,6 @@ def parse_number(words):
             
             else:
                 words = [words[0]] + parse_number(words[1:])
-        words = parse_number(words)
                     
     return words
 
